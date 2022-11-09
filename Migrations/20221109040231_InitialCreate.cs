@@ -2,7 +2,7 @@
 
 namespace TermProject.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,8 +10,9 @@ namespace TermProject.Migrations
                 name: "PokemonTypes",
                 columns: table => new
                 {
-                    PokemonTypeId = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
+                    PokemonTypeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,23 +33,21 @@ namespace TermProject.Migrations
                     SpAttack = table.Column<int>(nullable: false),
                     SpDefense = table.Column<int>(nullable: false),
                     Speed = table.Column<int>(nullable: false),
-                    PokemonTypeId1 = table.Column<string>(nullable: false),
-                    PokemonType1PokemonTypeId = table.Column<string>(nullable: true),
-                    PokemonTypeId2 = table.Column<string>(nullable: true),
-                    PokemonType2PokemonTypeId = table.Column<string>(nullable: true)
+                    PokemonType1Id = table.Column<int>(nullable: true),
+                    PokemonType2Id = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pokemons", x => x.PokemonId);
                     table.ForeignKey(
-                        name: "FK_Pokemons_PokemonTypes_PokemonType1PokemonTypeId",
-                        column: x => x.PokemonType1PokemonTypeId,
+                        name: "FK_Pokemons_PokemonTypes_PokemonType1Id",
+                        column: x => x.PokemonType1Id,
                         principalTable: "PokemonTypes",
                         principalColumn: "PokemonTypeId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Pokemons_PokemonTypes_PokemonType2PokemonTypeId",
-                        column: x => x.PokemonType2PokemonTypeId,
+                        name: "FK_Pokemons_PokemonTypes_PokemonType2Id",
+                        column: x => x.PokemonType2Id,
                         principalTable: "PokemonTypes",
                         principalColumn: "PokemonTypeId",
                         onDelete: ReferentialAction.Restrict);
@@ -59,45 +58,50 @@ namespace TermProject.Migrations
                 columns: new[] { "PokemonTypeId", "Name" },
                 values: new object[,]
                 {
-                    { "Gho", "Ghost" },
-                    { "Dra", "Dragon" },
-                    { "Ice", "Ice" },
-                    { "Psy", "Psychic" },
-                    { "Ele", "Electric" },
-                    { "Gra", "Grass" },
-                    { "Wat", "Water" },
-                    { "Fir", "Fire" },
-                    { "Ste", "Steel" },
-                    { "Dar", "Dark" },
-                    { "Fai", "Fairy" },
-                    { "Roc", "Rock" },
-                    { "Gro", "Ground" },
-                    { "Poi", "Poison" },
-                    { "Fly", "Flying" },
-                    { "Fig", "Fighting" },
-                    { "Nor", "Normal" },
-                    { "Bug", "Bug" }
+                    { 1, "Normal" },
+                    { 16, "Dragon" },
+                    { 15, "Ice" },
+                    { 14, "Psychic" },
+                    { 13, "Electric" },
+                    { 12, "Grass" },
+                    { 11, "Water" },
+                    { 10, "Fire" },
+                    { 9, "Steel" },
+                    { 8, "Ghost" },
+                    { 7, "Bug" },
+                    { 6, "Rock" },
+                    { 5, "Ground" },
+                    { 4, "Poison" },
+                    { 3, "Flying" },
+                    { 2, "Fighting" },
+                    { 17, "Dark" },
+                    { 18, "Fairy" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Pokemons",
-                columns: new[] { "PokemonId", "Attack", "Defense", "Hp", "Name", "PokedexNumber", "PokemonType1PokemonTypeId", "PokemonType2PokemonTypeId", "PokemonTypeId1", "PokemonTypeId2", "SpAttack", "SpDefense", "Speed" },
-                values: new object[,]
-                {
-                    { 3, 100, 123, 80, "Venusaur", 3, null, null, "Gra", "Poi", 122, 120, 80 },
-                    { 2, 62, 63, 60, "Ivysaur", 2, null, null, "Gra", "Poi", 80, 80, 60 },
-                    { 1, 49, 49, 45, "Bulbasaur", 1, null, null, "Gra", "Poi", 65, 65, 45 }
-                });
+                columns: new[] { "PokemonId", "Attack", "Defense", "Hp", "Name", "PokedexNumber", "PokemonType1Id", "PokemonType2Id", "SpAttack", "SpDefense", "Speed" },
+                values: new object[] { 1, 49, 49, 45, "Bulbasaur", 1, 12, 4, 65, 65, 45 });
+
+            migrationBuilder.InsertData(
+                table: "Pokemons",
+                columns: new[] { "PokemonId", "Attack", "Defense", "Hp", "Name", "PokedexNumber", "PokemonType1Id", "PokemonType2Id", "SpAttack", "SpDefense", "Speed" },
+                values: new object[] { 2, 62, 63, 60, "Ivysaur", 2, 12, 4, 80, 80, 60 });
+
+            migrationBuilder.InsertData(
+                table: "Pokemons",
+                columns: new[] { "PokemonId", "Attack", "Defense", "Hp", "Name", "PokedexNumber", "PokemonType1Id", "PokemonType2Id", "SpAttack", "SpDefense", "Speed" },
+                values: new object[] { 3, 100, 123, 80, "Venusaur", 3, 12, 4, 122, 120, 80 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pokemons_PokemonType1PokemonTypeId",
+                name: "IX_Pokemons_PokemonType1Id",
                 table: "Pokemons",
-                column: "PokemonType1PokemonTypeId");
+                column: "PokemonType1Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pokemons_PokemonType2PokemonTypeId",
+                name: "IX_Pokemons_PokemonType2Id",
                 table: "Pokemons",
-                column: "PokemonType2PokemonTypeId");
+                column: "PokemonType2Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

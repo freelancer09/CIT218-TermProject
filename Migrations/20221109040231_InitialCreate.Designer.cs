@@ -10,8 +10,8 @@ using TermProject.Models;
 namespace TermProject.Migrations
 {
     [DbContext(typeof(PokemonContext))]
-    [Migration("20221013013248_Fix")]
-    partial class Fix
+    [Migration("20221109040231_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,12 +48,11 @@ namespace TermProject.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<string>("PokemonType1Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("PokemonType1Id")
+                        .HasColumnType("int");
 
-                    b.Property<string>("PokemonType2Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("PokemonType2Id")
+                        .HasColumnType("int");
 
                     b.Property<int?>("SpAttack")
                         .IsRequired()
@@ -84,8 +83,8 @@ namespace TermProject.Migrations
                             Hp = 45,
                             Name = "Bulbasaur",
                             PokedexNumber = 1,
-                            PokemonType1Id = "Gra",
-                            PokemonType2Id = "Poi",
+                            PokemonType1Id = 12,
+                            PokemonType2Id = 4,
                             SpAttack = 65,
                             SpDefense = 65,
                             Speed = 45
@@ -98,8 +97,8 @@ namespace TermProject.Migrations
                             Hp = 60,
                             Name = "Ivysaur",
                             PokedexNumber = 2,
-                            PokemonType1Id = "Gra",
-                            PokemonType2Id = "Poi",
+                            PokemonType1Id = 12,
+                            PokemonType2Id = 4,
                             SpAttack = 80,
                             SpDefense = 80,
                             Speed = 60
@@ -112,8 +111,8 @@ namespace TermProject.Migrations
                             Hp = 80,
                             Name = "Venusaur",
                             PokedexNumber = 3,
-                            PokemonType1Id = "Gra",
-                            PokemonType2Id = "Poi",
+                            PokemonType1Id = 12,
+                            PokemonType2Id = 4,
                             SpAttack = 122,
                             SpDefense = 120,
                             Speed = 80
@@ -122,10 +121,13 @@ namespace TermProject.Migrations
 
             modelBuilder.Entity("TermProject.Models.PokemonType", b =>
                 {
-                    b.Property<string>("PokemonTypeId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("PokemonTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PokemonTypeId");
@@ -135,92 +137,92 @@ namespace TermProject.Migrations
                     b.HasData(
                         new
                         {
-                            PokemonTypeId = "Nor",
+                            PokemonTypeId = 1,
                             Name = "Normal"
                         },
                         new
                         {
-                            PokemonTypeId = "Fig",
+                            PokemonTypeId = 2,
                             Name = "Fighting"
                         },
                         new
                         {
-                            PokemonTypeId = "Fly",
+                            PokemonTypeId = 3,
                             Name = "Flying"
                         },
                         new
                         {
-                            PokemonTypeId = "Poi",
+                            PokemonTypeId = 4,
                             Name = "Poison"
                         },
                         new
                         {
-                            PokemonTypeId = "Gro",
+                            PokemonTypeId = 5,
                             Name = "Ground"
                         },
                         new
                         {
-                            PokemonTypeId = "Roc",
+                            PokemonTypeId = 6,
                             Name = "Rock"
                         },
                         new
                         {
-                            PokemonTypeId = "Bug",
+                            PokemonTypeId = 7,
                             Name = "Bug"
                         },
                         new
                         {
-                            PokemonTypeId = "Gho",
+                            PokemonTypeId = 8,
                             Name = "Ghost"
                         },
                         new
                         {
-                            PokemonTypeId = "Ste",
+                            PokemonTypeId = 9,
                             Name = "Steel"
                         },
                         new
                         {
-                            PokemonTypeId = "Fir",
+                            PokemonTypeId = 10,
                             Name = "Fire"
                         },
                         new
                         {
-                            PokemonTypeId = "Wat",
+                            PokemonTypeId = 11,
                             Name = "Water"
                         },
                         new
                         {
-                            PokemonTypeId = "Gra",
+                            PokemonTypeId = 12,
                             Name = "Grass"
                         },
                         new
                         {
-                            PokemonTypeId = "Ele",
+                            PokemonTypeId = 13,
                             Name = "Electric"
                         },
                         new
                         {
-                            PokemonTypeId = "Psy",
+                            PokemonTypeId = 14,
                             Name = "Psychic"
                         },
                         new
                         {
-                            PokemonTypeId = "Ice",
+                            PokemonTypeId = 15,
                             Name = "Ice"
                         },
                         new
                         {
-                            PokemonTypeId = "Dra",
+                            PokemonTypeId = 16,
                             Name = "Dragon"
                         },
                         new
                         {
-                            PokemonTypeId = "Dar",
+                            PokemonTypeId = 17,
                             Name = "Dark"
                         },
                         new
                         {
-                            PokemonTypeId = "Fai",
+                            PokemonTypeId = 18,
                             Name = "Fairy"
                         });
                 });
@@ -229,9 +231,7 @@ namespace TermProject.Migrations
                 {
                     b.HasOne("TermProject.Models.PokemonType", "PokemonType1")
                         .WithMany()
-                        .HasForeignKey("PokemonType1Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PokemonType1Id");
 
                     b.HasOne("TermProject.Models.PokemonType", "PokemonType2")
                         .WithMany()

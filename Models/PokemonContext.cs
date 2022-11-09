@@ -14,24 +14,24 @@ namespace TermProject.Models
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<PokemonType>().HasData(
-                new PokemonType { PokemonTypeId = "Nor", Name = "Normal" },
-                new PokemonType { PokemonTypeId = "Fig", Name = "Fighting" },
-                new PokemonType { PokemonTypeId = "Fly", Name = "Flying" },
-                new PokemonType { PokemonTypeId = "Poi", Name = "Poison" },
-                new PokemonType { PokemonTypeId = "Gro", Name = "Ground" },
-                new PokemonType { PokemonTypeId = "Roc", Name = "Rock" },
-                new PokemonType { PokemonTypeId = "Bug", Name = "Bug" },
-                new PokemonType { PokemonTypeId = "Gho", Name = "Ghost" },
-                new PokemonType { PokemonTypeId = "Ste", Name = "Steel" },
-                new PokemonType { PokemonTypeId = "Fir", Name = "Fire" },
-                new PokemonType { PokemonTypeId = "Wat", Name = "Water" },
-                new PokemonType { PokemonTypeId = "Gra", Name = "Grass" },
-                new PokemonType { PokemonTypeId = "Ele", Name = "Electric" },
-                new PokemonType { PokemonTypeId = "Psy", Name = "Psychic" },
-                new PokemonType { PokemonTypeId = "Ice", Name = "Ice" },
-                new PokemonType { PokemonTypeId = "Dra", Name = "Dragon" },
-                new PokemonType { PokemonTypeId = "Dar", Name = "Dark" },
-                new PokemonType { PokemonTypeId = "Fai", Name = "Fairy" }
+                new PokemonType { PokemonTypeId = 1, Name = "Normal" },
+                new PokemonType { PokemonTypeId = 2, Name = "Fighting" },
+                new PokemonType { PokemonTypeId = 3, Name = "Flying" },
+                new PokemonType { PokemonTypeId = 4, Name = "Poison" },
+                new PokemonType { PokemonTypeId = 5, Name = "Ground" },
+                new PokemonType { PokemonTypeId = 6, Name = "Rock" },
+                new PokemonType { PokemonTypeId = 7, Name = "Bug" },
+                new PokemonType { PokemonTypeId = 8, Name = "Ghost" },
+                new PokemonType { PokemonTypeId = 9, Name = "Steel" },
+                new PokemonType { PokemonTypeId = 10, Name = "Fire" },
+                new PokemonType { PokemonTypeId = 11, Name = "Water" },
+                new PokemonType { PokemonTypeId = 12, Name = "Grass" },
+                new PokemonType { PokemonTypeId = 13, Name = "Electric" },
+                new PokemonType { PokemonTypeId = 14, Name = "Psychic" },
+                new PokemonType { PokemonTypeId = 15, Name = "Ice" },
+                new PokemonType { PokemonTypeId = 16, Name = "Dragon" },
+                new PokemonType { PokemonTypeId = 17, Name = "Dark" },
+                new PokemonType { PokemonTypeId = 18, Name = "Fairy" }
                 );
 
             modelBuilder.Entity<Pokemon>().HasData(
@@ -46,8 +46,8 @@ namespace TermProject.Models
                     SpAttack = 65,
                     SpDefense = 65,
                     Speed = 45,
-                    PokemonType1Id = "Gra",
-                    PokemonType2Id = "Poi"
+                    PokemonType1Id = 12,
+                    PokemonType2Id = 4
                 },
                 new Pokemon
                 {
@@ -60,8 +60,8 @@ namespace TermProject.Models
                     SpAttack = 80,
                     SpDefense = 80,
                     Speed = 60,
-                    PokemonType1Id = "Gra",
-                    PokemonType2Id = "Poi"
+                    PokemonType1Id = 12,
+                    PokemonType2Id = 4
                 },
                 new Pokemon
                 {
@@ -74,8 +74,8 @@ namespace TermProject.Models
                     SpAttack = 122,
                     SpDefense = 120,
                     Speed = 80,
-                    PokemonType1Id = "Gra",
-                    PokemonType2Id = "Poi"
+                    PokemonType1Id = 12,
+                    PokemonType2Id = 4
                 }
             );
         }

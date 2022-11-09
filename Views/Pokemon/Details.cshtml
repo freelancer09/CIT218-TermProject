@@ -7,6 +7,7 @@
     <h2>Details</h2>
 </header>
 <hr />
+
 <article>
     <div>
         <dl class="row">
@@ -62,13 +63,13 @@
                 @Html.DisplayNameFor(model => model.PokemonType1)
             </dt>
             <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.PokemonType1.PokemonTypeId)
+                @Html.DisplayFor(model => model.PokemonType1.Name)
             </dd>
             <dt class = "col-sm-2">
                 @Html.DisplayNameFor(model => model.PokemonType2)
             </dt>
             <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.PokemonType2.PokemonTypeId)
+                @Html.DisplayFor(model => model.PokemonType2.Name)
             </dd>
         </dl>
     </div>

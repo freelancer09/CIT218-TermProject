@@ -41,12 +41,11 @@ namespace TermProject.Models
         [Range(1, 255, ErrorMessage = "Stat value must be between 1 and 255.")]
         public int? Speed { get; set; }
 
-        [Required(ErrorMessage = "Please enter a type.")]
-        public string PokemonType1Id { get; set; }
+        public int? PokemonType1Id { get; set; }
         [Display(Name = "Type")]
         public PokemonType PokemonType1 { get; set; }
 
-        public string PokemonType2Id { get; set; }
+        public int? PokemonType2Id { get; set; }
         [Display(Name = "Type")]
         public PokemonType PokemonType2 { get; set; }
     }

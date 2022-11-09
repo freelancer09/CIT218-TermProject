@@ -25,7 +25,7 @@ namespace TermProject.Controllers
         }
 
         // GET: PokemonType/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -65,7 +65,7 @@ namespace TermProject.Controllers
         }
 
         // GET: PokemonType/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -85,7 +85,7 @@ namespace TermProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("PokemonTypeId,Name")] PokemonType pokemonType)
+        public async Task<IActionResult> Edit(int id, [Bind("PokemonTypeId,Name")] PokemonType pokemonType)
         {
             if (id != pokemonType.PokemonTypeId)
             {
@@ -116,7 +116,7 @@ namespace TermProject.Controllers
         }
 
         // GET: PokemonType/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -136,7 +136,7 @@ namespace TermProject.Controllers
         // POST: PokemonType/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var pokemonType = await _context.PokemonTypes.FindAsync(id);
             _context.PokemonTypes.Remove(pokemonType);
@@ -144,7 +144,7 @@ namespace TermProject.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PokemonTypeExists(string id)
+        private bool PokemonTypeExists(int id)
         {
             return _context.PokemonTypes.Any(e => e.PokemonTypeId == id);
         }

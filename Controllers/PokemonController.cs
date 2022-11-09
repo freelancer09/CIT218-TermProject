@@ -48,8 +48,8 @@ namespace TermProject.Controllers
         // GET: Pokemon/Create
         public IActionResult Create()
         {
-            ViewData["PokemonType1Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "PokemonTypeId");
-            ViewData["PokemonType2Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "PokemonTypeId");
+            ViewData["PokemonType1Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "Name");
+            ViewData["PokemonType2Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "Name");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace TermProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PokemonType1Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "PokemonTypeId", pokemon.PokemonType1Id);
-            ViewData["PokemonType2Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "PokemonTypeId", pokemon.PokemonType2Id);
+            ViewData["PokemonType1Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "Name", pokemon.PokemonType1Id);
+            ViewData["PokemonType2Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "Name", pokemon.PokemonType2Id);
             return View(pokemon);
         }
 
@@ -84,8 +84,8 @@ namespace TermProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["PokemonType1Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "PokemonTypeId", pokemon.PokemonType1Id);
-            ViewData["PokemonType2Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "PokemonTypeId", pokemon.PokemonType2Id);
+            ViewData["PokemonType1Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "Name", pokemon.PokemonType1Id);
+            ViewData["PokemonType2Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "Name", pokemon.PokemonType2Id);
             return View(pokemon);
         }
 
@@ -121,8 +121,8 @@ namespace TermProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PokemonType1Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "PokemonTypeId", pokemon.PokemonType1Id);
-            ViewData["PokemonType2Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "PokemonTypeId", pokemon.PokemonType2Id);
+            ViewData["PokemonType1Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "Name", pokemon.PokemonType1Id);
+            ViewData["PokemonType2Id"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "Name", pokemon.PokemonType2Id);
             return View(pokemon);
         }
 
