@@ -31,20 +31,24 @@ namespace TermProject.Models
 
         [Required(ErrorMessage = "Please enter a stat value.")]
         [Range(1, 255, ErrorMessage = "Stat value must be between 1 and 255.")]
+        [Display(Name = "Sp. Atk")]
         public int? SpAttack { get; set; }
 
         [Required(ErrorMessage = "Please enter a stat value.")]
         [Range(1, 255, ErrorMessage = "Stat value must be between 1 and 255.")]
+        [Display(Name = "Sp. Def")]
         public int? SpDefense { get; set; }
 
         [Required(ErrorMessage = "Please enter a stat value.")]
         [Range(1, 255, ErrorMessage = "Stat value must be between 1 and 255.")]
         public int? Speed { get; set; }
 
+        [Display(Name = "Type")]
         public int? PokemonType1Id { get; set; }
         [Display(Name = "Type")]
         public PokemonType PokemonType1 { get; set; }
 
+        [Display(Name = "Type")]
         public int? PokemonType2Id { get; set; }
         [Display(Name = "Type")]
         public PokemonType PokemonType2 { get; set; }
