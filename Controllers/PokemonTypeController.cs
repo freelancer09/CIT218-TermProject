@@ -32,14 +32,20 @@ namespace TermProject.Controllers
                 return NotFound();
             }
 
-            var pokemonType = await _context.PokemonTypes
-                .FirstOrDefaultAsync(m => m.PokemonTypeId == id);
+            TypeWeaknessViewModel model = new TypeWeaknessViewModel();
+
+            var pokemonType = await _context.PokemonTypes.FirstOrDefaultAsync(m => m.PokemonTypeId == id);
             if (pokemonType == null)
             {
                 return NotFound();
             }
 
-            return View(pokemonType);
+            var weakness = await _context.TypeWeakness.Where(w => w.PokemonTypeId == id).Include(t => t.Weakness).ToListAsync();
+
+            model.Weaknesses = weakness;
+            model.PokemonType = pokemonType;
+
+            return View(model);
         }
 
         // GET: PokemonType/Create

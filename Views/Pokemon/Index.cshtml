@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TermProject.Models.Pokemon>
+﻿@model PaginatedList<TermProject.Models.Pokemon>
 
 @{
     ViewData["Title"] = "PokeDex";
@@ -10,40 +10,50 @@
 
 <article>
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" class="btn btn-outline-light">Create New</a>
     </p>
+
+    <form asp-action="Index" method="get" class="form-inline col-8">
+        <div class="form-group">
+            <label class="sr-only" for="SearchString">Name</label>
+            <input type="text" class="form-control" name="SearchString" placeholder="Name" value="@ViewData["currentFilter"]" />            
+        </div>
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </form>
+    <br />
+    
     <table class="table table-hover table-responsive text-light">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.PokedexNumber)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NumSortParm"]">#</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">Name</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Hp)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["HpSortParm"]">HP</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Attack)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["AtkSortParm"]">Attack</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Defense)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DefSortParm"]">Defense</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SpAttack)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SpAtkSortParm"]">Sp. Atk</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SpDefense)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SpDefSortParm"]">Sp. Def</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Speed)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SpeedSortParm"]">Speed</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PokemonType1)
+                    @Html.DisplayName("Type")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PokemonType2)
+                    @Html.DisplayName("Type")
                 </th>
                 <th></th>
             </tr>
@@ -82,12 +92,31 @@
                     @Html.DisplayFor(modelItem => item.PokemonType2.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.PokemonId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.PokemonId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.PokemonId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.PokemonId" class="btn btn-outline-light btn-sm">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.PokemonId" class="btn btn-outline-light btn-sm">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.PokemonId" class="btn btn-outline-light btn-sm">Delete</a>
                 </td>
             </tr>
     }
         </tbody>
     </table>
 </article>
+<br />
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+    asp-route-sortOrder="@ViewData["CurrentSort"]"
+    asp-route-pageNumber="@(Model.PageIndex - 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="btn btn-primary btn-sm @prevDisabled">
+Previous
+</a>
+<a asp-action="Index"
+    asp-route-sortOrder="@ViewData["CurrentSort"]"
+    asp-route-pageNumber="@(Model.PageIndex + 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="btn btn-primary btn-sm @nextDisabled">
+    Next
+</a>

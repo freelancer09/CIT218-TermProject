@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TermProject.Models;
 
 namespace TermProject.Migrations
 {
     [DbContext(typeof(PokemonContext))]
-    partial class PokemonContextModelSnapshot : ModelSnapshot
+    [Migration("20221206222130_Weakness")]
+    partial class Weakness
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,7 +84,7 @@ namespace TermProject.Migrations
                         {
                             PokemonId = 1,
                             Attack = 49,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 922, DateTimeKind.Local).AddTicks(9004),
+                            DateAdded = new DateTime(2022, 12, 6, 17, 21, 29, 919, DateTimeKind.Local).AddTicks(7718),
                             Defense = 49,
                             Hp = 45,
                             Name = "Bulbasaur",
@@ -97,7 +99,7 @@ namespace TermProject.Migrations
                         {
                             PokemonId = 2,
                             Attack = 62,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5749),
+                            DateAdded = new DateTime(2022, 12, 6, 17, 21, 29, 924, DateTimeKind.Local).AddTicks(4627),
                             Defense = 63,
                             Hp = 60,
                             Name = "Ivysaur",
@@ -111,145 +113,17 @@ namespace TermProject.Migrations
                         new
                         {
                             PokemonId = 3,
-                            Attack = 82,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5876),
-                            Defense = 83,
+                            Attack = 100,
+                            DateAdded = new DateTime(2022, 12, 6, 17, 21, 29, 924, DateTimeKind.Local).AddTicks(4801),
+                            Defense = 123,
                             Hp = 80,
                             Name = "Venusaur",
                             PokedexNumber = 3,
                             PokemonType1Id = 12,
                             PokemonType2Id = 4,
-                            SpAttack = 100,
-                            SpDefense = 100,
+                            SpAttack = 122,
+                            SpDefense = 120,
                             Speed = 80
-                        },
-                        new
-                        {
-                            PokemonId = 4,
-                            Attack = 52,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5885),
-                            Defense = 43,
-                            Hp = 39,
-                            Name = "Charmander",
-                            PokedexNumber = 4,
-                            PokemonType1Id = 10,
-                            SpAttack = 60,
-                            SpDefense = 50,
-                            Speed = 65
-                        },
-                        new
-                        {
-                            PokemonId = 5,
-                            Attack = 64,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5890),
-                            Defense = 58,
-                            Hp = 58,
-                            Name = "Charmeleon",
-                            PokedexNumber = 5,
-                            PokemonType1Id = 10,
-                            SpAttack = 80,
-                            SpDefense = 65,
-                            Speed = 80
-                        },
-                        new
-                        {
-                            PokemonId = 6,
-                            Attack = 84,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5894),
-                            Defense = 78,
-                            Hp = 78,
-                            Name = "Charizard",
-                            PokedexNumber = 6,
-                            PokemonType1Id = 10,
-                            PokemonType2Id = 3,
-                            SpAttack = 109,
-                            SpDefense = 85,
-                            Speed = 100
-                        },
-                        new
-                        {
-                            PokemonId = 7,
-                            Attack = 48,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5899),
-                            Defense = 65,
-                            Hp = 44,
-                            Name = "Squirtle",
-                            PokedexNumber = 7,
-                            PokemonType1Id = 11,
-                            SpAttack = 50,
-                            SpDefense = 64,
-                            Speed = 43
-                        },
-                        new
-                        {
-                            PokemonId = 8,
-                            Attack = 63,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5904),
-                            Defense = 80,
-                            Hp = 59,
-                            Name = "Wartortle",
-                            PokedexNumber = 8,
-                            PokemonType1Id = 11,
-                            SpAttack = 65,
-                            SpDefense = 80,
-                            Speed = 58
-                        },
-                        new
-                        {
-                            PokemonId = 9,
-                            Attack = 83,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5909),
-                            Defense = 100,
-                            Hp = 79,
-                            Name = "Blastoise",
-                            PokedexNumber = 9,
-                            PokemonType1Id = 11,
-                            SpAttack = 85,
-                            SpDefense = 105,
-                            Speed = 78
-                        },
-                        new
-                        {
-                            PokemonId = 10,
-                            Attack = 30,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5913),
-                            Defense = 35,
-                            Hp = 45,
-                            Name = "Caterpie",
-                            PokedexNumber = 10,
-                            PokemonType1Id = 7,
-                            SpAttack = 20,
-                            SpDefense = 20,
-                            Speed = 45
-                        },
-                        new
-                        {
-                            PokemonId = 11,
-                            Attack = 20,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5919),
-                            Defense = 55,
-                            Hp = 50,
-                            Name = "Metapod",
-                            PokedexNumber = 11,
-                            PokemonType1Id = 7,
-                            SpAttack = 25,
-                            SpDefense = 25,
-                            Speed = 30
-                        },
-                        new
-                        {
-                            PokemonId = 12,
-                            Attack = 45,
-                            DateAdded = new DateTime(2022, 12, 8, 17, 41, 2, 926, DateTimeKind.Local).AddTicks(5924),
-                            Defense = 50,
-                            Hp = 60,
-                            Name = "Butterfree",
-                            PokedexNumber = 12,
-                            PokemonType1Id = 7,
-                            PokemonType2Id = 3,
-                            SpAttack = 90,
-                            SpDefense = 80,
-                            Speed = 70
                         });
                 });
 
@@ -387,98 +261,8 @@ namespace TermProject.Migrations
                         new
                         {
                             TypeWeaknessId = 1,
-                            PokemonTypeId = 1,
-                            WeaknessId = 2
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 2,
-                            PokemonTypeId = 10,
-                            WeaknessId = 11
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 3,
-                            PokemonTypeId = 10,
-                            WeaknessId = 5
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 4,
-                            PokemonTypeId = 10,
-                            WeaknessId = 6
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 5,
-                            PokemonTypeId = 11,
-                            WeaknessId = 13
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 6,
-                            PokemonTypeId = 11,
-                            WeaknessId = 12
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 7,
-                            PokemonTypeId = 13,
-                            WeaknessId = 5
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 8,
                             PokemonTypeId = 12,
                             WeaknessId = 10
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 9,
-                            PokemonTypeId = 12,
-                            WeaknessId = 15
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 10,
-                            PokemonTypeId = 12,
-                            WeaknessId = 4
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 11,
-                            PokemonTypeId = 12,
-                            WeaknessId = 3
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 12,
-                            PokemonTypeId = 12,
-                            WeaknessId = 7
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 13,
-                            PokemonTypeId = 15,
-                            WeaknessId = 10
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 14,
-                            PokemonTypeId = 15,
-                            WeaknessId = 2
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 15,
-                            PokemonTypeId = 15,
-                            WeaknessId = 6
-                        },
-                        new
-                        {
-                            TypeWeaknessId = 16,
-                            PokemonTypeId = 15,
-                            WeaknessId = 9
                         });
                 });
 

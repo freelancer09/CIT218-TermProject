@@ -19,10 +19,84 @@ namespace TermProject.Controllers
         }
 
         // GET: Pokemon
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
-            var pokemonContext = _context.Pokemons.Include(p => p.PokemonType1).Include(p => p.PokemonType2);
-            return View(await pokemonContext.ToListAsync());
+            int pageSize = 10;
+
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NumSortParm"] = String.IsNullOrEmpty(sortOrder) ? "num_desc" : "";
+            ViewData["NameSortParm"] = sortOrder == "name" ? "name_desc" : "name";
+            ViewData["HpSortParm"] = sortOrder == "hp" ? "hp_desc" : "hp";
+            ViewData["AtkSortParm"] = sortOrder == "atk" ? "atk_desc" : "atk";
+            ViewData["DefSortParm"] = sortOrder == "def" ? "def_desc" : "def";
+            ViewData["SpAtkSortParm"] = sortOrder == "spatk" ? "spatk_desc" : "spatk";
+            ViewData["SpDefSortParm"] = sortOrder == "spdef" ? "spdef_desc" : "spdef";
+            ViewData["SpeedSortParm"] = sortOrder == "speed" ? "speed_desc" : "speed";
+
+            if (searchString != null)
+                pageNumber = 1;
+            else
+                searchString = currentFilter;
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var pokemon = from p in _context.Pokemons.Include(p => p.PokemonType1).Include(p => p.PokemonType2) select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+                pokemon = pokemon.Where(p => p.Name.Contains(searchString));
+
+            switch (sortOrder)
+            {
+                case "num_desc":
+                    pokemon = pokemon.OrderByDescending(s => s.PokedexNumber);
+                    break;
+                case "name":
+                    pokemon = pokemon.OrderBy(s => s.Name);
+                    break;
+                case "name_desc":
+                    pokemon = pokemon.OrderByDescending(s => s.Name);
+                    break;
+                case "hp":
+                    pokemon = pokemon.OrderBy(s => s.Hp);
+                    break;
+                case "hp_desc":
+                    pokemon = pokemon.OrderByDescending(s => s.Hp);
+                    break;
+                case "atk":
+                    pokemon = pokemon.OrderBy(s => s.Attack);
+                    break;
+                case "atk_desc":
+                    pokemon = pokemon.OrderByDescending(s => s.Attack);
+                    break;
+                case "def":
+                    pokemon = pokemon.OrderBy(s => s.Defense);
+                    break;
+                case "def_desc":
+                    pokemon = pokemon.OrderByDescending(s => s.Defense);
+                    break;
+                case "spatk":
+                    pokemon = pokemon.OrderBy(s => s.SpAttack);
+                    break;
+                case "spatk_desc":
+                    pokemon = pokemon.OrderByDescending(s => s.SpAttack);
+                    break;
+                case "spdef":
+                    pokemon = pokemon.OrderBy(s => s.SpDefense);
+                    break;
+                case "spdef_desc":
+                    pokemon = pokemon.OrderByDescending(s => s.SpDefense);
+                    break;
+                case "speed":
+                    pokemon = pokemon.OrderBy(s => s.Speed);
+                    break;
+                case "speed_desc":
+                    pokemon = pokemon.OrderByDescending(s => s.Speed);
+                    break;
+                default:
+                    pokemon = pokemon.OrderBy(s => s.PokedexNumber);
+                    break;
+            }
+            return View(await PaginatedList<Pokemon>.CreateAsync(pokemon.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Pokemon/Details/5

@@ -1,0 +1,38 @@
+﻿@model TermProject.Models.TypeWeakness
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<header>
+    <h2>Edit</h2>
+</header>
+<hr />
+
+<article>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="TypeWeaknessId" />
+                <div class="form-group">
+                    <label asp-for="PokemonTypeId" class="control-label"></label>
+                    <select asp-for="PokemonTypeId" class="form-control" asp-items="ViewBag.PokemonTypeId"></select>
+                    <span asp-validation-for="PokemonTypeId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="WeaknessId" class="control-label"></label>
+                    <select asp-for="WeaknessId" class="form-control" asp-items="ViewBag.WeaknessId"></select>
+                    <span asp-validation-for="WeaknessId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-outline-light">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</article>

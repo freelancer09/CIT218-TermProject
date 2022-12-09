@@ -1,4 +1,4 @@
-﻿@model TermProject.Models.PokemonType
+﻿@model TermProject.Models.TypeWeaknessViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -12,15 +12,24 @@
     <div>
         <dl class="row">
             <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.PokemonType.Name)
             </dt>
             <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Name)
+                @Html.DisplayFor(model => model.PokemonType.Name)
+            </dd>
+            <dt class="col-sm-2">
+                Weaknesses
+            </dt>
+            <dd class="col-sm-10">
+                @foreach(var weakness in Model.Weaknesses)
+                {
+                    <p>@weakness.Weakness.Name</p>
+                }                
             </dd>
         </dl>
     </div>
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.PokemonTypeId">Edit</a> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Edit" asp-route-id="@Model.PokemonType.PokemonTypeId" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-outline-light">Back to List</a>
     </div>
 </article>
