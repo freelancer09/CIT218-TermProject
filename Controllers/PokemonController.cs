@@ -19,7 +19,7 @@ namespace TermProject.Controllers
         }
 
         // GET: Pokemon
-        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber, int filter = 0)
         {
             int pageSize = 10;
 
@@ -32,18 +32,28 @@ namespace TermProject.Controllers
             ViewData["SpAtkSortParm"] = sortOrder == "spatk" ? "spatk_desc" : "spatk";
             ViewData["SpDefSortParm"] = sortOrder == "spdef" ? "spdef_desc" : "spdef";
             ViewData["SpeedSortParm"] = sortOrder == "speed" ? "speed_desc" : "speed";
+            ViewData["TypeSortParm"] = sortOrder == "type" ? "type_desc" : "type";
 
             if (searchString != null)
                 pageNumber = 1;
             else
                 searchString = currentFilter;
 
-            ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentFilter"] = searchString;            
+
+            ViewData["FilterList"] = new SelectList(_context.PokemonTypes, "PokemonTypeId", "Name", filter);
 
             var pokemon = from p in _context.Pokemons.Include(p => p.PokemonType1).Include(p => p.PokemonType2) select p;
 
             if (!String.IsNullOrEmpty(searchString))
                 pokemon = pokemon.Where(p => p.Name.Contains(searchString));
+
+            if (filter != 0)
+            {
+                pokemon = pokemon.Where(p => p.PokemonType1Id == filter || p.PokemonType2Id == filter);
+                ViewData["CurrentFilterType"] = filter;
+            }
+                
 
             switch (sortOrder)
             {
@@ -91,6 +101,12 @@ namespace TermProject.Controllers
                     break;
                 case "speed_desc":
                     pokemon = pokemon.OrderByDescending(s => s.Speed);
+                    break;
+                case "type":
+                    pokemon = pokemon.OrderBy(s => s.PokemonType1.Name);
+                    break;
+                case "type_desc":
+                    pokemon = pokemon.OrderByDescending(s => s.PokemonType1.Name);
                     break;
                 default:
                     pokemon = pokemon.OrderBy(s => s.PokedexNumber);

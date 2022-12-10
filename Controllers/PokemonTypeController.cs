@@ -19,9 +19,22 @@ namespace TermProject.Controllers
         }
 
         // GET: PokemonType
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string sortOrder)
         {
-            return View(await _context.PokemonTypes.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            var types = from t in _context.PokemonTypes select t;
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    types = types.OrderByDescending(t => t.Name);
+                    break;
+                default:
+                    types = types.OrderBy(t => t.Name);
+                    break;
+            }
+            return View(types);
         }
 
         // GET: PokemonType/Details/5

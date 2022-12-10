@@ -18,7 +18,14 @@
             <label class="sr-only" for="SearchString">Name</label>
             <input type="text" class="form-control" name="SearchString" placeholder="Name" value="@ViewData["currentFilter"]" />            
         </div>
+        <div class="form-group">
+            <label class="sr-only" for="Filter">Filter</label>
+            <select name="Filter" class="form-control" asp-items="@ViewBag.FilterList">
+                <option selected disabled hidden>--Type--</option>
+            </select>
+        </div>
         <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-outline-light">Reset</a>
     </form>
     <br />
     
@@ -26,31 +33,31 @@
         <thead>
             <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NumSortParm"]">#</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NumSortParm"]" asp-route-searchString="@ViewData["currentFilter"]" asp-route-filter="@ViewData["CurrentFilterType"]">#</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">Name</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-searchString="@ViewData["currentFilter"]" asp-route-filter="@ViewData["CurrentFilterType"]">Name</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["HpSortParm"]">HP</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["HpSortParm"]" asp-route-searchString="@ViewData["currentFilter"]" asp-route-filter="@ViewData["CurrentFilterType"]">HP</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["AtkSortParm"]">Attack</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["AtkSortParm"]" asp-route-searchString="@ViewData["currentFilter"]" asp-route-filter="@ViewData["CurrentFilterType"]">Attack</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DefSortParm"]">Defense</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DefSortParm"]" asp-route-searchString="@ViewData["currentFilter"]" asp-route-filter="@ViewData["CurrentFilterType"]">Defense</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SpAtkSortParm"]">Sp. Atk</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SpAtkSortParm"]" asp-route-searchString="@ViewData["currentFilter"]" asp-route-filter="@ViewData["CurrentFilterType"]">Sp. Atk</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SpDefSortParm"]">Sp. Def</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SpDefSortParm"]" asp-route-searchString="@ViewData["currentFilter"]" asp-route-filter="@ViewData["CurrentFilterType"]">Sp. Def</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SpeedSortParm"]">Speed</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SpeedSortParm"]" asp-route-searchString="@ViewData["currentFilter"]" asp-route-filter="@ViewData["CurrentFilterType"]">Speed</a>
                 </th>
                 <th>
-                    @Html.DisplayName("Type")
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TypeSortParm"]" asp-route-searchString="@ViewData["currentFilter"]" asp-route-filter="@ViewData["CurrentFilterType"]">Type</a>
                 </th>
                 <th>
                     @Html.DisplayName("Type")

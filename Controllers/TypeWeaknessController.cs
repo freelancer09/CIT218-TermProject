@@ -19,10 +19,34 @@ namespace TermProject.Controllers
         }
 
         // GET: TypeWeakness
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             var pokemonContext = _context.TypeWeakness.Include(t => t.PokemonType).Include(t => t.Weakness);
             return View(await pokemonContext.ToListAsync());
+        }*/
+        public IActionResult Index(string sortOrder)
+        {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["WeakSortParm"] = sortOrder == "weak" ? "weak_desc" : "weak";
+
+            var weak = from w in _context.TypeWeakness.Include(t => t.PokemonType).Include(t => t.Weakness) select w;
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    weak = weak.OrderByDescending(w => w.PokemonType.Name);
+                    break;
+                case "weak":
+                    weak = weak.OrderBy(w => w.Weakness.Name);
+                    break;
+                case "weak_desc":
+                    weak = weak.OrderByDescending(w => w.Weakness.Name);
+                    break;
+                default:
+                    weak = weak.OrderBy(w => w.PokemonType.Name);
+                    break;
+            }
+            return View(weak);
         }
 
         // GET: TypeWeakness/Details/5
