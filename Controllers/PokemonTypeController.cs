@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TermProject.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TermProject.Controllers
 {
+    [Authorize]
     public class PokemonTypeController : Controller
     {
         private readonly PokemonContext _context;
@@ -19,6 +21,7 @@ namespace TermProject.Controllers
         }
 
         // GET: PokemonType
+        [AllowAnonymous]
         public IActionResult Index(string sortOrder)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -38,6 +41,7 @@ namespace TermProject.Controllers
         }
 
         // GET: PokemonType/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

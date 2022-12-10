@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TermProject.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TermProject.Controllers
 {
+    [Authorize]
     public class TypeWeaknessController : Controller
     {
         private readonly PokemonContext _context;
@@ -19,11 +21,7 @@ namespace TermProject.Controllers
         }
 
         // GET: TypeWeakness
-        /*public async Task<IActionResult> Index()
-        {
-            var pokemonContext = _context.TypeWeakness.Include(t => t.PokemonType).Include(t => t.Weakness);
-            return View(await pokemonContext.ToListAsync());
-        }*/
+        [AllowAnonymous]
         public IActionResult Index(string sortOrder)
         {
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -50,6 +48,7 @@ namespace TermProject.Controllers
         }
 
         // GET: TypeWeakness/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
